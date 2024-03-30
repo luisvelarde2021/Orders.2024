@@ -12,6 +12,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=LocalConnection"));
 var app = builder.Build();
 
+app.UseCors(x=> x
+.AllowAnyMethod()
+.AllowAnyHeader()
+.SetIsOriginAllowedToAllowWildcardSubdomains()
+.AllowCredentials());
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
